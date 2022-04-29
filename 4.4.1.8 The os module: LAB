@@ -18,14 +18,17 @@ import os
 import shutil 
 
 def remove_tree(path):
+    path = abs_path(path)
     os.chdir(os.path.dirname(__file__))
     try:
         shutil.rmtree(path)
-        print("Tree Removed")
+        print("Tree Removed:",path)
     except:
         pass
 
 def create_tree(path):
+    path = abs_path(path)
+    os.chdir(os.path.dirname(__file__))
     remove_tree(path)    
     os.makedirs(path + "/c/other_courses/cpp")
     os.makedirs(path + "/c/other_courses/python")
@@ -33,19 +36,31 @@ def create_tree(path):
     os.makedirs(path + "/cpp/other_courses/python")
     os.makedirs(path + "/python/other_courses/c")
     os.makedirs(path + "/python/other_courses/cpp")
-    print("Tree Created")
+    print("Tree Created:",path)
+
+def abs_path(path):
+    if path[0:2] == "..":
+        os.chdir(os.path.dirname(__file__))
+        os.chdir("..")
+        path = os.getcwd() + path[2:]
+    elif path[0] == ".":
+        path = os.path.dirname(__file__) + path[1:]
+    elif path[0] == "/":
+        path = os.path.dirname(__file__) + path
+    return path.replace("\\","/")
 
 def find(path,dir):
-    if path[0] == ".":
-        path = os.path.dirname(__file__) + path[1:]
-    path = path.replace("\\","/")
+    path = abs_path(path)
     os.chdir(path)
     if dir in os.listdir():
         print(path + "/" + dir)
     for next_fold in os.listdir():
         find(path + "/" + next_fold,dir)
-
-for path in ["c:/tree","./tree"]:
-    create_tree(path)
-    find(path,"python")
-    remove_tree(path)
+try:
+    for path in ["/tree","./tree","../tree","c:/tree"]:
+        create_tree(path)
+        find(path,"python")
+        remove_tree(path)
+    print("Completed successfully")
+except:
+    print("An error occurred")

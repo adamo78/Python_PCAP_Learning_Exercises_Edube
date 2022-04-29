@@ -31,14 +31,16 @@ def remove_tree(path):
 
 def create_tree(path):
     path = abs_path(path)
+    subfolders = [  "/c/other_courses/cpp", 
+                    "/c/other_courses/python",
+                    "/cpp/other_courses/c",
+                    "/cpp/other_courses/python",
+                    "/python/other_courses/c",
+                    "/python/other_courses/cpp"]
     os.chdir(os.path.dirname(__file__))
-    remove_tree(path)    
-    os.makedirs(path + "/c/other_courses/cpp")
-    os.makedirs(path + "/c/other_courses/python")
-    os.makedirs(path + "/cpp/other_courses/c")
-    os.makedirs(path + "/cpp/other_courses/python")
-    os.makedirs(path + "/python/other_courses/c")
-    os.makedirs(path + "/python/other_courses/cpp")
+    remove_tree(path)
+    for subfold in subfolders:
+        os.makedirs(path + subfold)
     print("\nTree Created:",path)
 
 def abs_path(path):
@@ -68,4 +70,3 @@ try:
     print("\nCompleted successfully\n")
 except:
     print("An error occurred")
-

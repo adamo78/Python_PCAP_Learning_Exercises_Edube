@@ -12,6 +12,7 @@ import os
 import shutil
 
 print(platform.uname())
+print(os.name)
 
 os.mkdir("my_first_directory")
 os.chdir("my_first_directory")

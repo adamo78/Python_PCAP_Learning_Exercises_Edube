@@ -1,0 +1,38 @@
+# 4.3.1.16-LAB-Sorted-character-frequency-histogram
+# Objectives:
+# 1 - Improve the student's skills in operating with files (reading/writing) 2 - Using lambdas to change the sort order.
+# Scenario:
+# The previous code needs to be improved. It's okay, but it has to be better. Your task is to make some amendments, which generate the following results:
+# The output histogram will be sorted based on the characters' frequency (the bigger counter should be presented first)
+# The histogram should be sent to a file with the same name as the input one, but with the suffix '.hist' (it should be concatenated to the original name)
+# Assuming that the input file contains just one line filled with: cBabAa The expected output should look as follows: a -> 3 b -> 2 c -> 1
+# Tip: Use a lambda to change the sort order.
+
+# For Windows, you may need to run:
+# pip install windows-curses
+
+from curses.ascii import isalnum, isalpha
+from os import strerror
+
+try:
+    source_file = input("Enter file name: ")
+    cnt = 0
+    source_stream = open(source_file, "rt")
+    content = source_stream.read()
+    char_dict = {}
+    for char in content:
+        if isalnum(char):
+            char = char.lower()
+            if char in char_dict.keys():
+                char_dict[char] += 1
+            else:
+                char_dict[char] = 1
+    target_file = source_file.split(".")
+    target_file = target_file[0] + ".hist"
+    target_stream = open(target_file, "w+t")
+    for key, value in sorted(char_dict.items(), key=lambda x:x[1], reverse=True):
+        target_stream.write(str(key) + "-->" + str(value) + "\n")
+    source_stream.close()
+    target_stream.close()
+except IOError as e:
+    print("I/O error occurred: ", strerror(e.errno))

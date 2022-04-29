@@ -37,15 +37,3 @@ try:
 
 except IOError as e:
     print("I/O error occurred: ", strerror(e.errno))
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About

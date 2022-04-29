@@ -67,3 +67,4 @@ for student in student_points:
     padding = (max_len-len(student[0]))
     print(student[0]," "*padding,student[1],)
 file_stream.close()
+

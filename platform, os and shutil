@@ -1,0 +1,40 @@
+# my_first_directory — this is a relative path which will create the my_first_directory directory in the current working directory;
+# ./my_first_directory — this is a relative path that explicitly points to the current working directory. It has the same effect as the path above;
+# ../my_first_directory — this is a relative path that will create the my_first_directory directory in the parent directory of the current working directory;
+# /python/my_first_directory — this is the absolute path that will create the my_first_directory directory, which in turn is in the python directory in the root directory.
+# The mkdir function can optionally take the mode argument, which specifies directory permissions. However, on some systems, the mode argument is ignored.
+# To change the directory permissions, we recommend the chmod function, which works similarly to the chmod command on Unix systems. You can find more information about it in the documentation.
+# NOTE: The equivalent of the makedirs function on Unix systems is the mkdir command with the -p flag. Unix-like systems:mkdir -p my_first_directory/my_second_directory
+# NOTE: On Unix-like systems, the equivalent of the getcwd function is the pwd command, which prints the name of the current working directory.
+
+import platform
+import os
+import shutil
+
+print(platform.uname())
+
+os.mkdir("my_first_directory")
+os.chdir("my_first_directory")
+print(os.getcwd())
+for i in range(5):
+    os.makedirs("my_second_directory/my_sub_directory_"+str(i+1))
+os.chdir("my_second_directory")
+print(os.getcwd())
+print(os.listdir())
+os.chdir("..")
+for i in range(5):
+    os.removedirs("my_second_directory/my_sub_directory_"+str(i+1))
+os.chdir("..")
+os.rmdir("my_first_directory")
+
+os.makedirs("dir1/dir2")
+shutil.rmtree("dir1")
+
+returned_value = os.system("mkdir my_first_directory")
+print(returned_value)
+print(os.listdir())
+returned_value = os.system("rmdir my_first_directory")
+print(returned_value)
+
+os.chdir("\\")
+print(os.getcwd())

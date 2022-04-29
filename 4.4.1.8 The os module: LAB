@@ -2,13 +2,13 @@
 # 1 - Improving the student's skills in interacting with the operating system;
 # 2 - Practical use of known functions provided by the os module.
 # Scenario:
-# It goes without saying that operating systems allow you to search for files and directories. While studying this part of the course, you learned about the functions 
-# of the os module, which have everything you need to write a program that will search for directories in a given location.
+# It goes without saying that operating systems allow you to search for files and directories. While studying this part of the course, you learned about the
+# functions of the os module, which have everything you need to write a program that will search for directories in a given location.
 # To make your task easier, we have prepared a test directory structure for you:
 # Your program should meet the following requirements:
-# Write a function or method called find that takes two arguments called path and dir. The path argument should accept a relative or absolute path to a directory 
-# where the search should start, while the dir argument should be the name of a directory that you want to find in the given path. Your program should display the 
-# absolute paths if it finds a directory with the given name.
+# Write a function or method called find that takes two arguments called path and dir. The path argument should accept a relative or absolute path to a directory
+# where the search should start, while the dir argument should be the name of a directory that you want to find in the given path. Your program should display the
+#absolute paths if it finds a directory with the given name.
 # The directory search should be done recursively. This means that the search should also include all subdirectories in the given path.
 # Example input:
 # path="./tree", dir="python"
@@ -39,14 +39,14 @@ def create_tree(path):
     os.makedirs(path + "/cpp/other_courses/python")
     os.makedirs(path + "/python/other_courses/c")
     os.makedirs(path + "/python/other_courses/cpp")
-    print("Tree Created:",path)
+    print("\nTree Created:",path)
 
 def abs_path(path):
     if path[0:2] == "..":
         os.chdir("..")
         path = os.getcwd() + path[2:]
     elif path[0] == ".":
-        path = os.path.dirname(__file__) + path[1:]
+        path = os.getcwd() + path[1:]
     elif path[0] == "/":
         path = os.getcwd() + path
     return path.replace("\\","/")
@@ -64,6 +64,6 @@ try:
         create_tree(path)
         find(path,"python")
         remove_tree(path)
-    print("Completed successfully")
+    print("\nCompleted successfully\n")
 except:
     print("An error occurred")

@@ -2,14 +2,20 @@
 # Objectives:
 # 1 - Improving the student's skills in operating with files (reading). 2 - Using data collections for counting numerous data.
 # Scenario:
-# A text file contains some text (nothing unusual) but we need to know how often (or how rare) each letter appears in the text. Such an analysis may be useful in cryptography, so we want to be able to do that in reference to the Latin alphabet.
+# A text file contains some text (nothing unusual) but we need to know how often (or how rare) each letter appears in the text. 
+# Such an analysis may be useful in cryptography, so we want to be able to do that in reference to the Latin alphabet.
 # Your task is to write a program which:
-# 1 - Asks the user for the input file's name; 2 - Reads the file (if possible) and counts all the Latin letters (lower- and upper-case letters are treated as equal) 3 - Prints a simple histogram in alphabetical order (only non-zero counts should be presented) 4 - Create a test file for the code, and check if your histogram contains valid results.
-# Assuming that the test file contains just one line filled with: aBc The expected output should look as follows: a -> 1 b -> 1 c -> 1
-# Tip: We think that a dictionary is a perfect d
+# 1 - Asks the user for the input file's name; 
+# 2 - Reads the file (if possible) and counts all the Latin letters (lower- and upper-case letters are treated as equal)
+# 3 - Prints a simple histogram in alphabetical order (only non-zero counts should be presented)
+# 4 - Create a test file for the code, and check if your histogram contains valid results.
+# Assuming that the test file contains just one line filled with: aBc The expected output should look as follows: 
+# a -> 1
+# b -> 1
+# c -> 1
+# Tip: We think that a dictionary is a perfect d..
 
-# For Windows, you may need to run:
-# pip install windows-curses
+# For Windows, you may need to run: pip install windows-curses
 
 from curses.ascii import isalnum, isalpha
 from os import strerror
@@ -37,3 +43,4 @@ try:
 
 except IOError as e:
     print("I/O error occurred: ", strerror(e.errno))
+

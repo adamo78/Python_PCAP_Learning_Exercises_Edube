@@ -40,7 +40,6 @@ def create_tree(path):
 
 def abs_path(path):
     if path[0:2] == "..":
-        os.chdir(os.path.dirname(__file__))
         os.chdir("..")
         path = os.getcwd() + path[2:]
     elif path[0] == ".":
@@ -56,6 +55,7 @@ def find(path,dir):
         print(path + "/" + dir)
     for next_fold in os.listdir():
         find(path + "/" + next_fold,dir)
+    os.chdir(os.path.dirname(__file__))
 try:
     for path in ["/tree","./tree","../tree","c:/tree"]:
         create_tree(path)

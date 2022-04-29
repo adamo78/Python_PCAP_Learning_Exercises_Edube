@@ -59,6 +59,7 @@ def find(path,dir):
     for next_fold in os.listdir():
         find(path + "/" + next_fold,dir)
     os.chdir(os.path.dirname(__file__))
+
 try:
     for path in ["/tree","./tree","../tree","c:/tree"]:
         create_tree(path)

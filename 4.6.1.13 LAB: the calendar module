@@ -1,0 +1,34 @@
+# Objectives: # Improving the student's skills in using the Calendar class.
+# Scenario:
+# During this course, we looked at the Calendar class a bit. 
+# Your task is to extend its functionality with a new method called count_weekday_in_year, which takes a year and a weekday as parameters, and
+# then returns the number of occurrences of a specific weekday in the year.
+# Use the following tips:
+# Create a class called MyCalendar that extends the Calendar class;
+# create the count_weekday_in_year method with the year and weekday parameters. The weekday parameter should be a value between 0-6, where 0 is 
+# Monday and 6 is Sunday. The method should return the number of days as an integer;
+# in your implementation, use the monthdays2calendar method of the Calendar class.
+# The following are the expected results:
+# Sample arguments: year=2019, weekday=0
+# Expected output: 52
+# Sample arguments: year=2000, weekday=6
+# Expected output: 53
+
+import calendar
+
+class MyCalendar(calendar.Calendar):
+    def __init__(self):
+        calendar.Calendar.__init__(self)
+    def count_weekday_in_year(self,year,weekday):
+        __weekday_count = 0
+        for month in range(1,13):
+            for date in self.itermonthdays2(year,month):
+                if date[0] > 0 and date[1] == weekday:
+                    __weekday_count += 1
+        return __weekday_count
+
+
+c = MyCalendar()
+print(c.count_weekday_in_year(year=2019, weekday=0))
+print(c.count_weekday_in_year(year=2000, weekday=6))
+

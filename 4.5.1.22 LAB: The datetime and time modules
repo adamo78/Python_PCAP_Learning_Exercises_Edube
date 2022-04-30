@@ -30,3 +30,4 @@ print(d.strftime("%A, %Y %B %d"))
 print("Weekday:",d.strftime("%w"))
 print("Day of the year:",d.strftime("%j"))
 print("Week number fo the year",d.strftime("%U"))
+

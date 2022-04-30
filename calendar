@@ -1,0 +1,75 @@
+import calendar
+
+# w – date column width (default 2)
+# l – number of lines per week (default 1)
+# c – number of spaces between month columns (default 6)
+# m – number of columns (default 3)
+
+print(calendar.calendar(2020,c=3,m=6))
+calendar.prcal(2020)
+
+
+print(calendar.month(2020, 11))
+calendar.prmonth(2022, 1)
+
+calendar.setfirstweekday(calendar.SUNDAY)
+calendar.prmonth(2020, 12)
+calendar.setfirstweekday(calendar.MONDAY)
+
+print(calendar.weekday(2020, 12, 25))
+
+days = calendar.weekheader(2)
+print(days.split())
+
+# A function called isleap, returns True if the passed year is leap, or False otherwise. 
+# Another one, called leapdays, returns the number of leap years in the given range of years.
+print(calendar.isleap(2020))
+print(calendar.leapdays(2010, 2021))  # Up to but not including 2021.
+
+# calendar.Calendar – provides methods to prepare calendar data for formatting;
+# calendar.TextCalendar – is used to create regular text calendars;
+# calendar.HTMLCalendar – is used to create HTML calendars;
+# calendar.LocalTextCalendar – is a subclass of the calendar.TextCalendar class. 
+#                              The constructor of this class takes the locale parameter, which is used to return the 
+#                              appropriate months and weekday names.
+# calendar.LocalHTMLCalendar – is a subclass of the calendar.HTMLCalendar class. The constructor of this class takes 
+#                              the locale parameter, which is used to return the appropriate months and weekday names.
+
+c = calendar.Calendar(calendar.SUNDAY)
+for weekday in c.iterweekdays():
+    print(weekday, end=" ")
+print("")
+
+c = calendar.Calendar()
+for date in c.itermonthdates(2019, 11):
+    print(date, end=" ")
+print("")
+# The last day of November 2019 was a Saturday, so in order to keep the complete week, one more day is 
+# returned 12/01/2019 (Friday).
+
+
+c = calendar.Calendar()
+for date in c.itermonthdays(2019, 11):
+    print(date, end=" ")
+print("")
+# itermonthdays2 – returns days in the form of tuples consisting of a day of the month number and a week day number;
+# itermonthdays3 – returns days in the form of tuples consisting of a year, a month, and a day of the month numbers. 
+#                   This method has been available since version 3.7;
+# itermonthdays4 – returns days in the form of tuples consisting of a year, a month, a day of the month, and a day 
+#                   of the week numbers. This method has been available since Python version 3.7.
+print("\nitermonthdays3itermonthdays2")
+for date in c.itermonthdays2(2019, 11):
+    print(date, end=" ")
+print("")
+print("\nitermonthdays3itermonthdays3")
+for date in c.itermonthdays3(2019, 11):
+    print(date, end=" ")
+print("")
+print("\nitermonthdays3itermonthdays4")
+for date in c.itermonthdays4(2019, 11):
+    print(date, end=" ")
+print("")
+
+for data in c.monthdays2calendar(2020, 12):
+    print(data)
+

@@ -19,15 +19,14 @@
 # Note: Each result line should be created by calling the strftime method with at least one directive in the format argument.
 
 
-import datetime as dt
-from time import strftime
+from datetime import datetime
 
-d = dt.datetime(2020,11,4,14,53)
+d = datetime(2020,11,4,14,53)
 print(d.strftime("%Y/%m/%d %H:%M:%S"))
 print(d.strftime("%y/%B/%d %H:%M:%S %p"))
 print(d.strftime("%a, %Y %b %d"))
 print(d.strftime("%A, %Y %B %d"))
 print("Weekday:",d.strftime("%w"))
 print("Day of the year:",d.strftime("%j"))
-print("Week number of the year",d.strftime("%U"))
+print("Week number fo the year",d.strftime("%U"))
 

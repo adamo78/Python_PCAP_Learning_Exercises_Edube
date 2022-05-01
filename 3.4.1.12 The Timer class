@@ -1,0 +1,74 @@
+# Objectives
+# 1 - Improving the student's skills in defining classes from scratch;
+# 2 - Defining and using instance variables;
+# 3 - defining and using methods.
+# Scenario
+# We need a class able to count seconds. Easy? Not as much as you may think as we're going to have some specific expectations.
+# Read them carefully as the class you're about write will be used to launch rockets carrying international missions to Mars. 
+# It's a great responsibility. We're counting on you!
+# Your class will be called Timer. Its constructor accepts three arguments representing hours (a value from range [0..23] 
+# - we will be using the military time), minutes (from range [0..59]) and seconds (from range [0..59]).
+# Zero is the default value for all of the above parameters. There is no need to perform any validation checks.
+# The class itself should provide the following facilities:
+# objects of the class should be "printable", i.e. they should be able to implicitly convert themselves into strings of the 
+# following form: "hh:mm:ss", with leading zeros added when any of the values is less than 10;
+# the class should be equipped with parameterless methods called next_second() and previous_second(), incrementing the time 
+# stored inside objects by +1/-1 second respectively.
+# Use the following hints:
+# all object's properties should be private;
+# consider writing a separate function (not method!) to format the time string.
+# Complete the template we've provided in the editor. Run your code and check whether the output looks the same as ours.
+# Expected output
+# 23:59:59
+# 00:00:00
+# 23:59:59
+ 
+class Timer:
+    def __init__(self,h,m,s):
+        self.__h = h
+        self.__m = m
+        self.__s = s
+
+    def __str__(self):
+        return format_time(self.__h,self.__m,self.__s)
+
+    def next_second(self):
+        self.__s += 1
+        if self.__s == 60:
+            self.__s = 0
+            self.__m += 1
+            if self.__m == 60:
+                self.__m = 0
+                self.__h += 1
+                if self.__h == 24:
+                    self.__h = 0
+
+
+    def prev_second(self):
+        self.__s -= 1
+        if self.__s ==-1:
+            self.__s = 59
+            self.__m -= 1
+            if self.__m == -1:
+                self.__m = 59
+                self.__h -= 1
+                if self.__h == -1:
+                    self.__h = 23
+
+def format_time(h,m,s):
+    if h < 10:
+        h = '0' + str(h)
+    if m < 10:
+        m = '0' + str(m)
+    if s < 10:
+        s = '0' + str(s)
+    return str(h) + ':' + str(m) + ':' + str(s)
+
+
+timer = Timer(23, 59, 59)
+print(timer)
+timer.next_second()
+print(timer)
+timer.prev_second()
+print(timer)
+

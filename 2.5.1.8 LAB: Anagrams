@@ -1,0 +1,45 @@
+# Objectives:
+# 1 - Improving the student's skills in operating with strings;
+# 2 - Converting strings into lists, and vice versa.
+# Scenario:
+# An anagram is a new word formed by rearranging the letters of a word, using all the original letters exactly once. For example, the phrases "rail safety" and "fairy tales" are anagrams, while "I am" and "You are" are not.
+# Your task is to write a program which:
+# asks the user for two separate texts;
+# checks whether, the entered texts are anagrams and prints the result.
+# Note:
+# assume that two empty strings are not anagrams;
+# treat upper- and lower-case letters as equal;
+# spaces are not taken into account during the check - treat them as non-existent
+# Test your code using the data we've provided.
+# Test data
+# Sample input:
+# Listen
+# Silent
+# Sample output:
+# Anagrams
+# Sample input:
+# modern
+# norman
+# Sample output:
+# Not anagrams
+
+from pickletools import string1
+
+strng1 = input("Enter the first string: ")
+strng2 = input("Enter the second string: ")
+
+if len(strng1) == len(strng2):
+    strng1 = strng1.upper()
+    strng2 = strng2.upper()
+    anagrams = True
+    for char in strng1:
+        if strng1.count(char) != strng2.count(char):
+            anagrams = False
+else:
+    anagrams = False
+
+if anagrams == True:
+    print("Anagrams")
+else:
+    print("Not anagrams")
+

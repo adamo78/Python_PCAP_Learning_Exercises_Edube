@@ -1,0 +1,79 @@
+# Objectives
+# improving the student's skills in operating with strings;
+# using strings to represent non-text data.
+# Scenario
+# You've surely seen a seven-segment display.
+# It's a device (sometimes electronic, sometimes mechanical) designed to present one decimal digit using a subset 
+# of seven segments. If you still don't know what it is, refer to the following Wikipedia article.
+# Your task is to write a program which is able to simulate the work of a seven-display device, although you're 
+# going to use single LEDs instead of segments.
+# Each digit is constructed from 13 LEDs (some lit, some dark, of course) - that's how we imagine it:
+
+#   # ### ### # # ### ### ### ### ### ### 
+#   #   #   # # # #   #     # # # # # # # 
+#   # ### ### ### ### ###   # ### ### # # 
+#   # #     #   #   # # #   # # #   # # # 
+#   # ### ###   # ### ###   # ### ### ###
+
+# Note: the number 8 shows all the LED lights on.
+# Your code has to display any non-negative integer number entered by the user.
+# Tip: using a list containing patterns of all ten digits may be very helpful.
+# Sample input:
+# 123
+# Sample output:
+
+#   # ### ### 
+#   #   #   # 
+#   # ### ### 
+#   # #     # 
+#   # ### ### 
+
+# Sample input:
+# 9081726354
+# Sample output:
+
+# ### ### ###   # ### ### ### ### ### # # 
+# # # # # # #   #   #   # #     # #   # # 
+# ### # # ###   #   # ### ### ### ### ### 
+#   # # # # #   #   # #   # #   #   #   # 
+# ### ### ###   #   # ### ### ### ###   # 
+
+display_number = input("Enter a number: ")
+try:
+    test_input = int(display_number)
+except:
+    print("Invalid number")
+
+light_maps = {
+    '0':['###','# #','# #','# #','###'],
+    '1':['  #','  #','  #','  #','  #'],
+    '2':['###','  #','###','#  ','###'],
+    '3':['###','  #','###','  #','###'],
+    '4':['# #','# #','###','  #','  #'],
+    '5':['###','#  ','###','  #','###'],
+    '6':['###','#  ','###','# #','###'],
+    '7':['###','  #','  #','  #','  #'],
+    '8':['###','# #','###','# #','###'],
+    '9':['###','# #','###','  #','###'],
+}
+
+row1 = ''
+row2 = ''
+row3 = ''
+row4 = ''
+row5 = ''
+for display_digit in display_number:
+    digit_map = light_maps[display_digit]
+    row1 += digit_map[0] + " "
+    row2 += digit_map[1] + " "
+    row3 += digit_map[2] + " "
+    row4 += digit_map[3] + " "
+    row5 += digit_map[4] + " "
+print("")
+print(row1)
+print(row2)
+print(row3)
+print(row4)
+print(row5)
+print("")
+

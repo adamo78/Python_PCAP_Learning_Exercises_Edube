@@ -24,7 +24,7 @@
 # False
 # Queue error
 
-class QueueError(Exception):  # Choose base class for the new exception.
+class QueueError(IndexError):  # Choose base class for the new exception.
     pass
 
 

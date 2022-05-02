@@ -1,0 +1,124 @@
+# Objectives:
+# 1 - Improving the student's skills in operating with strings and lists;
+# 2 - Converting strings into lists.
+# Scenario:
+# As you probably know, Sudoku is a number-placing puzzle played on a 9x9 board. The player has to fill the board in a very specific way:
+# each row of the board must contain all digits from 0 to 9 (the order doesn't matter)
+# each column of the board must contain all digits from 0 to 9 (again, the order doesn't matter)
+# each of the nine 3x3 "tiles" (we will name them "sub-squares") of the table must contain all digits from 0 to 9.
+# If you need more details, you can find them here.
+# Your task is to write a program which:
+# reads 9 rows of the Sudoku, each containing 9 digits (check carefully if the data entered are valid)
+# outputs Yes if the Sudoku is valid, and No otherwise.
+# Test your code using the data we've provided.
+# Test data
+# Sample input:
+# 295743861,431865927,876192543,387459216,612387495,549216738,763524189,928671354,154938672
+# Sample output:
+# Yes
+# Sample input:
+# 195743862,431865927,876192543,387459216,612387495,549216738,763524189,928671354,254938671
+# Sample output:
+# No
+
+rows = [295743861,431865927,876192543,387459216,612387495,549216738,763524189,928671354,154938672]
+# rows = [195743862,431865927,876192543,387459216,612387495,549216738,763524189,928671354,254938671]
+
+# convert rows to strings
+for i in range(9):
+    rows[i] = str(rows[i])
+
+# validate number of rows
+if len(rows) != 9:
+    print("Valid? No -",len(rows),"rows")
+    exit()
+
+# validate length of rows
+for row in rows:
+    if len(row) != 9:
+        print(row)
+        print("Valid? No -","row",rows.index(row)+1,len(row),"nums")
+        exit()
+
+# print grid
+print("+-------"*3,"+",sep="")
+row_count = 1
+for row in rows:
+    col_count = 1
+    print("| ",end="")
+    for num in row:
+        print(num,end="")
+        if col_count == 3:
+            print(" | ",end="")
+            col_count = 1
+        else:
+            print(" ",end="")
+            col_count += 1
+    print("")
+    if row_count == 3:
+        print("+-------"*3,"+",sep="")
+        row_count = 1
+    else:
+        row_count += 1
+
+print("rows: ",rows)
+
+# create checklist of values 1-9
+checklist = []
+for i in range(9):
+    checklist.append(str(i+1))
+
+# validate rows against checklist
+for row in rows:
+    for num in checklist:
+        if num not in row:
+            print("Valid? No -","row",rows.index(row)+1,", missing number",num)
+            exit()
+
+# create zero length string for each column
+cols = []
+for i in range(9):
+    cols.append("")  
+
+# calculate columns from rows
+for row in rows:
+    for i in range(9):
+        cols[i] += row[i]
+print("cols: ",cols)
+
+# validate columns against checklist
+for col in cols:
+    for num in checklist:
+        if num not in col:
+            print("Valid? No -","col",cols.index(col)+1,", missing number",num)
+            exit()
+
+# create zero length string for each square
+squares = []
+for i in range(9):
+    squares.append("")  
+
+# calculate squares from rows
+for i in range(0,3):
+        squares[0] += rows[i][0:3]
+        squares[1] += rows[i][3:6]
+        squares[2] += rows[i][6:9]
+for i in range(3,6):
+        squares[3] += rows[i][0:3]
+        squares[4] += rows[i][3:6]
+        squares[5] += rows[i][6:9]
+for i in range(6,9):
+        squares[6] += rows[i][0:3]
+        squares[7] += rows[i][3:6]
+        squares[8] += rows[i][6:9]
+print("sqrs: ",squares)
+
+# validate squares against checklist
+for square in squares:
+    for num in checklist:
+        if num not in square:
+            print("Valid? No -","square",squares.index(square)+1,", missing number",num)
+            exit()
+
+print("Valid? Yes")
+
